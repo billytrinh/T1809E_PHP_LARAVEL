@@ -11,6 +11,8 @@
     <form action="post.php" method="POST">
         <input type="text" name="username" placeholder="Username">
         <br/>
+        <input type="text" name="email" placeholder="Email">
+        <br/>
         <input type="password" name="password" placeholder="password">
         <br/>
         <button type="submit">Submit</button>

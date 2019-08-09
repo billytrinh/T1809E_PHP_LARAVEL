@@ -12,6 +12,10 @@ if($conn->connect_error){
     die("Connect Error");
 }
 //echo "connect success";
+$insert_sql = "INSERT INTO USER (username,email,password) 
+    VALUES ('abcxyz','abc@gmail.com','123456')";
+//$conn->query($insert_sql);
+
 $sql = "SELECT * FROM user";
 $result = $conn->query($sql);
 
