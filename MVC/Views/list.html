@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <?php foreach($users as $user):?>
+        <li>
+            <p><?php echo $user->name ?></p>
+            <p><?php echo $user->email ?></p>
+            <p><?php echo $user->password ?></p>
+        </li>
+    <?php endforeach; ?>
+</ul>
+</body>
+</html>
