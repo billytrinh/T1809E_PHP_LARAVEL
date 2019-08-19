@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
+use App\Book;
 use Illuminate\Http\Request;
 
 class DemoController extends Controller
 {
-    public function helloWorld(){
-        $students = Student::all();
-        return view("demo",compact("students"));
-    }
 
-    public function sayHello(){
-        return "say Hello";
+    public function bookList(){
+        // Lay tat ca
+        //$books = Book::all();
+        // Co phan trang
+        $books = Book::paginate(20);
+        return view("book.list",compact("books"));
     }
 }

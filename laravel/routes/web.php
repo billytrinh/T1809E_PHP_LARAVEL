@@ -14,5 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get("/hello-world","DemoController@helloWorld");
-Route::get("/say-hello","DemoController@sayHello");
+Route::get("/quan-ly-sach","DemoController@bookList");

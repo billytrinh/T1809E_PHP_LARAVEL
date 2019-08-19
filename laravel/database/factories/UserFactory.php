@@ -25,3 +25,25 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->define(\App\Author::class, function (Faker $faker) {
+    return [
+        "author_name" => $faker->unique()->name,
+    ];
+});
+
+$factory->define(\App\Nxb::class, function (Faker $faker) {
+    return [
+        "nxb_name" => $faker->unique()->company,
+    ];
+});
+
+$factory->define(\App\Book::class, function (Faker $faker) {
+    return [
+        "book_name" => $faker->jobTitle,
+        "author_id" => $faker->randomFloat(0,1,100),
+        "nxb_id" => $faker->randomFloat(0,1,100),
+        "qty" => $faker->randomFloat(0,0,1000)
+    ];
+});
+
