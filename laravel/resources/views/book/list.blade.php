@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.css")}}"/>
 </head>
 <body>
-    <table class="table">
+    <div class="col-xs-6 col-xs-offset-3">
+    <table class="table table-hover">
         <thead>
             <th>ID</th>
             <th>Name</th>
@@ -31,6 +32,7 @@
             @endforeach
         </tbody>
     </table>
-    {!! $books->links() !!}
+    {!! $books->links("navigation") !!}
+    </div>
 </body>
 </html>

@@ -12,7 +12,9 @@ class DemoController extends Controller
         // Lay tat ca
         //$books = Book::all();
         // Co phan trang
-        $books = Book::paginate(20);
+        $books = Book::orderBy("book_name","ASC")
+                    ->orderBy("qty","DESC")
+                    ->paginate(20);
         return view("book.list",compact("books"));
     }
 }
