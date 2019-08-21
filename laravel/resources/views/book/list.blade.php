@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quan ly sach</title>
-    <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.css")}}"/>
-</head>
-<body>
-    <div class="col-xs-6 col-xs-offset-3">
+@extends("layout")
+@section("main_content")
     <table class="table table-hover">
         <thead>
             <th>ID</th>
@@ -33,6 +23,4 @@
         </tbody>
     </table>
     {!! $books->links("navigation") !!}
-    </div>
-</body>
-</html>
+@endsection

@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get("/quan-ly-sach","DemoController@bookList");
+Route::get("/quan-ly-tac-gia","DemoController@authorList");
