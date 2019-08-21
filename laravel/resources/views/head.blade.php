@@ -3,6 +3,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quan ly tac gia</title>
+    <title>
+        @if(isset($title))
+        {{$title}}
+        @else
+        Quan ly sach
+        @endif
+    </title>
     <link rel="stylesheet" type="text/css" href="{{asset("bootstrap/css/bootstrap.css")}}"/>
 </head>

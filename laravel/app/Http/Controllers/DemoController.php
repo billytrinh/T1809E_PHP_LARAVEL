@@ -13,9 +13,17 @@ class DemoController extends Controller
         // Lay tat ca
         //$books = Book::all();
         // Co phan trang
-        $books = Book::orderBy("book_name","ASC")
-                    ->orderBy("qty","DESC")
-                    ->paginate(20);
+        $search_key = "Care";
+        $search_author = "Kaci Metz";
+        $books = Book::leftJoin("author","book.author_id",'=',"author.author_id")
+                    ->where("book.qty",">=",500) // so sanh >=
+                    ->where("book.active",1) // so sanh =
+                    ->where("author.author_name",$search_author)
+                    //->where("book_name","LIKE","%".$search_key."%")// tim kiem
+                    ->orderBy("book.book_name","ASC")
+                    ->orderBy("book.qty","DESC")
+                    ->paginate(20,["book.book_id","book.book_name","book.qty",
+                        "book.active","author.author_name as author_id"]);
         return view("book.list",compact("books"));
     }
 

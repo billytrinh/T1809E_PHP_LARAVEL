@@ -17,7 +17,7 @@
                     <td>{{$book->author_id}}</td>
                     <td>{{$book->nxb_id}}</td>
                     <td>{{$book->qty}}</td>
-                    <td>{{$book->active}}</td>
+                    <td>{{\App\Book::$_StatusLabel[$book->active]}}</td>
                 </tr>
             @endforeach
         </tbody>

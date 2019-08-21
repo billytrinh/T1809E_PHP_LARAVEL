@@ -19,4 +19,21 @@ class Book extends Model
         "created_at",
         "updated_at"
     ];
+
+    public Const ACTIVE = 1;
+    public Const DEACTIVE = 0;
+    public Const DEACTIVE2 = 2;
+
+    public static $_StatusLabel = [
+        self::ACTIVE => "active",
+        self::DEACTIVE => "Deactive",
+        self::DEACTIVE2 => "Deactive2",
+    ];
+
+    public function getStatus(){
+        if($this->active){
+            return "Active";
+        }
+        return "Deactive";
+    }
 }
