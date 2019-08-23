@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 Route::get("/quan-ly-sach","DemoController@bookList");
 Route::get("/quan-ly-tac-gia","DemoController@authorList");
+Route::get("/them-sach","DemoController@themsach");
+Route::post("/them-sach","DemoController@luusach");
