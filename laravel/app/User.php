@@ -10,6 +10,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ADMIN = 1;
+    const USER = 0;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,4 +39,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin(){
+        if($this->admin == self::ADMIN){
+            return true;
+        }
+        return false;
+    }
 }
