@@ -8,7 +8,9 @@
         <p style="color: red">{{$errors->first("fail")}}</p>
     @endif
 
-    <table class="table table-hover">
+    <div class="table-responsive m-b-40">
+        <table class="table table-borderless table-data3">
+
         <thead>
             <th>ID</th>
             <th>Name</th>
@@ -35,4 +37,5 @@
         </tbody>
     </table>
     {!! $books->links("navigation") !!}
+    </div>
 @endsection
