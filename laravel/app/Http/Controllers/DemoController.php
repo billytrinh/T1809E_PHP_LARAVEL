@@ -16,21 +16,22 @@ class DemoController extends Controller
         // Co phan trang
         $search_key = "Care";
         $search_author = "Kaci Metz";
-        $books = Book::leftJoin("author","book.author_id",'=',"author.author_id")
-                //    ->where("book.qty",">=",500) // so sanh >=
-                    ->where("book.active",1) // so sanh =
+        $books = Book::where("active",1) // so sanh =
                   //  ->where("author.author_name",$search_author)
                     //->where("book_name","LIKE","%".$search_key."%")// tim kiem
-                    ->orderBy("book.created_at","DESC")
-                    ->orderBy("book.qty","DESC")
-                    ->paginate(20,["book.book_id","book.book_name","book.qty",
-                        "book.active","author.author_name as author_id"]);
+                    ->orderBy("created_at","DESC")
+                    ->orderBy("qty","DESC")
+                    ->with("getAuthor")
+                    ->paginate(20);
+        //dd($books);
         return view("book.list",compact("books"));
     }
 
     public function authorList(){
         $authors =  Author::orderBy("author_name","ASC")
+                    ->withCount("getMyBook")
                     ->paginate(20);
+       // dd($authors);
         return view("author.list",compact('authors'));
     }
 
@@ -131,5 +132,11 @@ class DemoController extends Controller
         }
         return redirect("quan-ly-sach")->with("success","Delete successfully");
 
+    }
+
+    public function chitiettacgia(Request $request){
+        $a_id = $request->get("a_id");
+        $author = Author::find($a_id);
+        return view("author.detail",compact("author"));
     }
 }

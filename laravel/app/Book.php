@@ -36,4 +36,12 @@ class Book extends Model
         }
         return "Deactive";
     }
+
+    public function getAuthor(){
+        return $this->belongsTo("App\Author","author_id");
+    }
+
+    public function getNxb(){
+        return $this->belongsTo("App\Nxb","nxb_id");
+    }
 }

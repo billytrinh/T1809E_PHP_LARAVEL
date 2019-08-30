@@ -14,4 +14,12 @@ class Author extends Model
         "created_at",
         "updated_at"
     ];
+
+    public function getOneBook(){
+        return $this->hasOne("App\Book","author_id","author_id");
+    }
+
+    public function getMyBook(){
+        return $this->hasMany("App\Book","author_id","author_id");
+    }
 }
