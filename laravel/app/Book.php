@@ -44,4 +44,8 @@ class Book extends Model
     public function getNxb(){
         return $this->belongsTo("App\Nxb","nxb_id");
     }
+
+    public function getUsers(){
+        return $this->belongsToMany("App\User","user_book","book_id","user_id","book_id","id");
+    }
 }

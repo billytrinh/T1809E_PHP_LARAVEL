@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Book;
 use App\Nxb;
+use App\User;
 use Illuminate\Http\Request;
 
 class DemoController extends Controller
 {
 
     public function bookList(){
+//        $u = User::find(101);
+//        dd($u->getBooks);
+        $b = Book::find(58);
+        dd($b->getUsers);
         // Lay tat ca
         //$books = Book::all();
         // Co phan trang
