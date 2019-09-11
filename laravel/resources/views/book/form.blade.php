@@ -1,7 +1,7 @@
 @extends("layout")
 
 @section("main_content")
-   <form action="{{url("/them-sach")}}" method="post">
+   <form action="{{url("/admin/them-sach")}}" method="post">
        @csrf
        <div class="form-group">
            <label>Tên sách</label>

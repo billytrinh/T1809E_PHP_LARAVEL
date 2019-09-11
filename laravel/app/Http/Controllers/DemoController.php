@@ -6,16 +6,14 @@ use App\Author;
 use App\Book;
 use App\Nxb;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Pusher\Pusher;
 
 class DemoController extends Controller
 {
 
     public function bookList(){
-//        $u = User::find(101);
-//        dd($u->getBooks);
-        $b = Book::find(58);
-        dd($b->getUsers);
         // Lay tat ca
         //$books = Book::all();
         // Co phan trang
@@ -71,11 +69,21 @@ class DemoController extends Controller
                 "nxb_id"=> $request->get("nxb_id"),
                 "qty"=> $request->get("qty"),
             ])->save();
+            $data = [
+                "book_name"=> $request->get("book_name"),
+                "author_id"=> $request->get("author_id"),
+                "nxb_id"=> $request->get("nxb_id"),
+                "qty"=> $request->get("qty"),
+                "created_at"=> Carbon::now()
+            ];
+            sendNotify("my-channel","my-event",$data);
+
         }catch (\Exception $e){
             die($e->getMessage());
         }
 
-        return redirect("/quan-ly-sach");
+        //return redirect("/admin/quan-ly-sach");
+        return adminRedirect("quan-ly-sach");
     }
 
     public function suasach(Request $request){
@@ -117,7 +125,7 @@ class DemoController extends Controller
         }catch (\Exception $e){
             die($e->getMessage());
         }
-        return redirect("quan-ly-sach");
+        return redirect(adminPath("quan-ly-sach"));
     }
 
 
@@ -133,9 +141,9 @@ class DemoController extends Controller
             //$book->delete();
         }catch (\Exception $e){
             //die($e->getMessage());
-            return redirect("quan-ly-sach")->withErrors(["fail"=>$e->getMessage()]);
+            return redirect(adminPath("quan-ly-sach"))->withErrors(["fail"=>$e->getMessage()]);
         }
-        return redirect("quan-ly-sach")->with("success","Delete successfully");
+        return redirect(adminPath("quan-ly-sach"))->with("success","Delete successfully");
 
     }
 

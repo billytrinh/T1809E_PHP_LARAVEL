@@ -1,6 +1,6 @@
 @extends("layout")
 @section("main_content")
-    <a href="{{url("/them-sach")}}" class="au-btn au-btn-icon au-btn--green au-btn--small">Thêm sách</a>
+    <a href="{{url("/admin/them-sach")}}" class="au-btn au-btn-icon au-btn--green au-btn--small">Thêm sách</a>
     @if(Session::has("success"))
         <p style="color: green">{{Session::get("success")}}</p>
     @endif
