@@ -20,12 +20,48 @@
                             @endforeach
                        </tbody>
                    </table>
+                    <a onclick="LoadMore2()" class="btn btn-danger">Load More </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
+    var page =1;
+    function LoadMore() {
+        $.ajax({
+           url: '{{url('/load-more')}}',
+           data: {
+               page: ++page,
+           },
+           method: 'GET',
+           success: function (result) {
+                var new_html = '';
+                for(var i=0;i<result.length;i++){
+                    new_html +=  "<tr>" ;
+                    new_html +=    "<td>"+result[i].book_name;
+                    new_html +=    "</td><td>"+result[i].qty;
+                    new_html +=    "</td><td>"+result[i].created_at;
+                    new_html +=    "</td></tr>";
+                }
+               $(".table tbody").append(new_html);
+           }
+        });
+    }
+
+    function LoadMore2() {
+        $.ajax({
+            url: '{{url('/load-more-html')}}',
+            data: {
+                page: ++page,
+            },
+            method: 'GET',
+            success: function (result) {
+                $(".table tbody").append(result);
+            }
+        });
+    }
+
 
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;

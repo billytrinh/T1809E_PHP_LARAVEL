@@ -12,6 +12,8 @@ class HomeController extends Controller
      *
      * @return void
      */
+    const _LIMIT = 10;
+
     public function __construct()
     {
         //$this->middleware('auth');
@@ -24,7 +26,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $books = Book::orderBy("created_at","DESC")->take(10)->get();
+        $books = Book::orderBy("created_at","DESC")->take(self::_LIMIT)->get();
         return view('home',compact("books"));
+    }
+
+    public function loadMore(Request $request){
+        $page = $request->has("page")?$request->get("page"):1;
+        $offset = ($page-1)*self::_LIMIT;
+        $books = Book::orderBy("created_at","DESC")
+                    ->offset($offset)
+                    ->take(self::_LIMIT)->get();
+        return response()->json($books);
+    }
+
+    public function loadMoreHtml(Request $request){
+        $page = $request->has("page")?$request->get("page"):1;
+        $offset = ($page-1)*self::_LIMIT;
+        $books = Book::orderBy("created_at","DESC")
+            ->offset($offset)
+            ->take(self::_LIMIT)->get();
+        return view('book.loadmore',compact("books"));
     }
 }
