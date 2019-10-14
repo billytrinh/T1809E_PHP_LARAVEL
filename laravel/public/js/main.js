@@ -252,84 +252,90 @@
     const brandProduct = 'rgba(0,181,233,0.8)'
     const brandService = 'rgba(0,173,95,0.8)'
 
-    var elements = 10
-    var data1 = [52, 60, 55, 50, 65, 80, 57, 70, 105, 115]
-    var data2 = [102, 70, 80, 100, 56, 53, 80, 75, 65, 90]
+    var elements = 10;
+    jQuery.ajax({
+        url: "http://localhost:8888/t1809E_PHP_LARAVEL/laravel/public/api-chart",
+        success: function (data) {
+            var data1 = data.set1;
+            var data2 = data.set2;
 
-    var ctx = document.getElementById("recent-rep-chart");
-    if (ctx) {
-      ctx.height = 250;
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
-          datasets: [
-            {
-              label: 'My First dataset',
-              backgroundColor: brandService,
-              borderColor: 'transparent',
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 0,
-              data: data1
+            var ctx = document.getElementById("recent-rep-chart");
+            if (ctx) {
+                ctx.height = 250;
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,
+                        datasets: [
+                            {
+                                label: 'My First dataset',
+                                backgroundColor: brandService,
+                                borderColor: 'transparent',
+                                pointHoverBackgroundColor: '#fff',
+                                borderWidth: 0,
+                                data: data1
 
-            },
-            {
-              label: 'My Second dataset',
-              backgroundColor: brandProduct,
-              borderColor: 'transparent',
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 0,
-              data: data2
+                            },
+                            {
+                                label: 'My Second dataset',
+                                backgroundColor: brandProduct,
+                                borderColor: 'transparent',
+                                pointHoverBackgroundColor: '#fff',
+                                borderWidth: 0,
+                                data: data2
 
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: true,
+                        legend: {
+                            display: false
+                        },
+                        responsive: true,
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    drawOnChartArea: true,
+                                    color: '#f2f2f2'
+                                },
+                                ticks: {
+                                    fontFamily: "Poppins",
+                                    fontSize: 12
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    maxTicksLimit: 5,
+                                    stepSize: 50,
+                                    max: 150,
+                                    fontFamily: "Poppins",
+                                    fontSize: 12
+                                },
+                                gridLines: {
+                                    display: true,
+                                    color: '#f2f2f2'
+
+                                }
+                            }]
+                        },
+                        elements: {
+                            point: {
+                                radius: 0,
+                                hitRadius: 10,
+                                hoverRadius: 4,
+                                hoverBorderWidth: 3
+                            }
+                        }
+
+
+                    }
+                });
             }
-          ]
-        },
-        options: {
-          maintainAspectRatio: true,
-          legend: {
-            display: false
-          },
-          responsive: true,
-          scales: {
-            xAxes: [{
-              gridLines: {
-                drawOnChartArea: true,
-                color: '#f2f2f2'
-              },
-              ticks: {
-                fontFamily: "Poppins",
-                fontSize: 12
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                maxTicksLimit: 5,
-                stepSize: 50,
-                max: 150,
-                fontFamily: "Poppins",
-                fontSize: 12
-              },
-              gridLines: {
-                display: true,
-                color: '#f2f2f2'
-
-              }
-            }]
-          },
-          elements: {
-            point: {
-              radius: 0,
-              hitRadius: 10,
-              hoverRadius: 4,
-              hoverBorderWidth: 3
-            }
-          }
-
-
         }
-      });
-    }
+    });
+
 
     // Percent Chart
     var ctx = document.getElementById("percent-chart");
@@ -341,19 +347,22 @@
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: [50, 20,30],
               backgroundColor: [
                 '#00b5e9',
-                '#fa4251'
+                '#fa4251',
+                  "red"
               ],
               hoverBackgroundColor: [
                 '#00b5e9',
-                '#fa4251'
+                '#fa4251',
+                  "yellow"
               ],
               borderWidth: [
                 0, 0
               ],
               hoverBorderColor: [
+                'transparent',
                 'transparent',
                 'transparent'
               ]
@@ -361,7 +370,8 @@
           ],
           labels: [
             'Products',
-            'Services'
+            'Services',
+              "Trash"
           ]
         },
         options: {

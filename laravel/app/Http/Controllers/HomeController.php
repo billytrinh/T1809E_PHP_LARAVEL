@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $books = Book::orderBy("created_at","DESC")->take(self::_LIMIT)->get();
-        return view('home',compact("books"));
+        return view('book.dashboard',compact("books"));
     }
 
     public function loadMore(Request $request){
@@ -46,5 +46,12 @@ class HomeController extends Controller
             ->offset($offset)
             ->take(self::_LIMIT)->get();
         return view('book.loadmore',compact("books"));
+    }
+
+    public function chart(){
+        $data["labels"] =  ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'May', 'June', 'July', 'August', 'September', ''];
+        $data["set1"] = [52, 60, 55, 50, 65, 80, 57, 70, 105, 115];
+        $data["set2"] = [102, 70, 80, 100, 56, 53, 80, 75, 65, 90];
+        return response()->json($data);
     }
 }

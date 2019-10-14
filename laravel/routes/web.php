@@ -17,3 +17,4 @@ Route::group(["middleware"=> "admin","prefix"=> "admin"],function (){
 });
 
 include_once("frontend.php");
+Route::get("api-chart","HomeController@chart");
